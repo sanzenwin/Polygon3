@@ -5,12 +5,7 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
 jobs:
   publish:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - run: python3 -m pip install -U wheel setuptools
-      - run: python3 setup.py bdist_wheel --plat-name=win-amd64
-      - run: dir ./dist/
+    uses: sanzenwin/workflows/.github/workflows/pypi-release-publish-win.yml@main
+    permissions:
+      contents: write
+    secrets: inherit
